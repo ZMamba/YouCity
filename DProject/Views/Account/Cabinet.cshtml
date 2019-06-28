@@ -1,0 +1,11 @@
+﻿@model DProject.Models.User
+@{
+    ViewData["Title"] = "Cabinet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name, все Ваши предложения находятся тут</h2>
+@foreach (var item in Model.Propositions)
+{
+    <p>@item.Title -- <a asp-controller="Proposition" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a></p>
+}

@@ -1,0 +1,75 @@
+﻿@model PaginatedList<DProject.Models.Proposition>
+@{
+    ViewData["Title"] = "Ваші пропозиції";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<a class="proposition_add_btn" asp-action="Create">+</a>
+
+@if (Model.Count == 0)
+{
+    <h5 class="text-center info_message">Зараз у вас жодної пропозицій</h5>
+}
+else
+{
+    <div class="row mb-2 search-filter">
+        <div class="col-md-6 ">
+            <form asp-action="Index" method="get">
+                <div class="form-actions no-color">
+                    <p>
+                        <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                        <input style="background-color: bisque" type="submit" value="&#xf002" class="btn btn-default fa fa-search" /> |
+                        <a asp-action="Index">К полному списку</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">По алфавиту</a>
+            <span>|</span>
+            <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">По дате добавления</a>
+        </div>
+    </div>
+
+
+
+    <div class="row mb-2">
+        @foreach (var proposition in Model)
+        {
+            <div class="col-md-6">
+                <div class="card flex-md-row mb-4 shadow-sm h-md-250">
+                    <div class="card-body d-flex flex-column align-items-start">
+                        <a asp-controller="Proposition" asp-action="Delete" asp-route-id="@proposition.Id" class="btn btn-danger">Видалити Х</a>
+                        <h3 class="mb-0">
+                            <a asp-controller="Proposition" asp-action="Details" asp-route-id="@proposition.Id">@proposition.Title</a>
+                        </h3>
+                        <div class="mb-1 text-muted">@proposition.City.Name</div>
+                        <div class="mb-1 text-muted">@proposition.Date</div>
+                        <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+                        <a asp-controller="Proposition" asp-action="Details" asp-route-id="@proposition.Id">Детальніше</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    
+
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        < Предыдущая
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Следующая >
+    </a>
+}
+

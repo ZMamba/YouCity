@@ -1,0 +1,134 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.proposition_title {
+    text-align: center;
+    margin-top: 26px;
+}
+.proposition_title span {
+    position: absolute;
+    font-size: 16px;
+    background-color: yellow;
+}
+.proposition_nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+.proposition_nav .fa-backward {
+    color: mediumvioletred;
+}
+.proposition_nav .fa-thumbs-o-up {
+    color: orangered;
+}
+.proposition_info {
+    color: grey;
+    font-size: 14px;
+}
+.proposition_add_btn{
+    color: #fff;
+    display: block;
+    background: mediumaquamarine;
+    text-align: center;
+    font-size: 38px;
+    border-radius: 0px 0px 4px 4px;
+}
+.btn-blue {
+    background-color: dodgerblue;
+    color: white;
+}
+.proposition {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 40px;
+    margin: 30px 0 0 0;
+}
+.comment_form {
+    margin-bottom: 36px;
+}
+.comment_author {
+    margin: 0;
+    color: cornflowerblue;
+    font-weight: 600;
+}
+.comment_date {
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
+.form-label-group {
+    margin: 16px 0px;
+}
+.register_link {
+    display: block;
+}
+.login-register_wrapper {
+    display: flex;
+    flex-direction:column;
+    height: 77vh;
+}
+.info_message {
+    margin: 34px 0;
+}
+/*SVG icons */
+.svg-icon {
+    width: 1em;
+    height: 1em;
+}
+
+    .svg-icon path,
+    .svg-icon polygon,
+    .svg-icon rect {
+        fill: #4691f6;
+    }
+
+    .svg-icon circle {
+        stroke: #4691f6;
+        stroke-width: 1;
+    }
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+.search-filter {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}

@@ -1,0 +1,42 @@
+﻿@model DProject.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Реєстрація";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="login-register_wrapper">
+    <form asp-action="Register" asp-controller="Account" asp-antiforgery="true" class="form-signin">
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">Реєстрація</h1>
+        </div>
+
+        <div class="form-label-group">
+            <label asp-for="Name" class="sr-only">Введіть Ваше ім'я</label>
+            <input asp-for="Name" type="text" id="inputEmail" class="form-control" placeholder="Ім'я" required="" autofocus="">
+            <span asp-validation-for="Name" />
+        </div>
+
+        <div class="form-label-group">
+            <label asp-for="Email" class="sr-only">Введіть Ваш Email</label>
+            <input asp-for="Email" type="text" id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="">
+            <span asp-validation-for="Email" />
+        </div>
+
+        <div class="form-label-group">
+            <label asp-for="Password" class="sr-only">Введіть пароль</label>
+            <input asp-for="Password" type="password" id="inputPassword" class="form-control" placeholder="Пароль" required="">
+            <span asp-validation-for="Password" />
+        </div>
+
+        <div class="form-label-group">
+            <label asp-for="ConfirmPassword" class="sr-only">Введіть пароль ще раз</label>
+            <input asp-for="ConfirmPassword" type="password" id="inputPassword" class="form-control" placeholder="Перевірка паролю" required="">
+            <span asp-validation-for="ConfirmPassword" />
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Зареєструватися</button>
+        <a class="text-center register_link" asp-action="Login" asp-controller="Account">Авторизація</a>
+    </form>
+</div>

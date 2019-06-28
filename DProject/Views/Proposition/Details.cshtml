@@ -1,0 +1,72 @@
+﻿@model DProject.Models.Proposition
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+    
+<h2 class="proposition_title">@Html.DisplayFor(model => model.Title)<span>@Model.Likes.Count</span></h2>
+
+<div class="proposition_nav">
+    <a asp-controller="Home" asp-action="Index"><i class="fa fa-backward"></i></a>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form style="display: @ViewData["isLiked"];" asp-controller="Like" asp-action="Index" asp-route-propositionId="@Model.Id">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <input type="submit" value="&#xf087;" class="btn btn-default fa fa-thumbs-o-up" />
+            </div>
+        </form>
+    }
+</div>
+
+<div class="proposition">
+
+
+    <div class="content">
+        <p class="proposition_info">Автор: @Model.User.Name <br /> Mісто: @Model.City.Name <br />  Дата: @Model.Date</p>
+
+        <p>
+            @Html.DisplayFor(model => model.Content)
+        </p>
+    </div>
+
+    <div class="comments">
+        <h6>Комментарии(@Model.Comments.Count): </h6>
+        <hr />
+        @if (User.Identity.IsAuthenticated)
+        {
+            <form class="comment_form" asp-controller="Comment" asp-action="Create" asp-route-propositionId="@Model.Id">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Content" class="control-label">Ваш комментарий</label>
+                    <input asp-for="Content" class="form-control" value="" />
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Комментировать" class="btn btn-default btn-blue" />
+                </div>
+            </form>
+        }
+
+        @if (Model.Comments.Count > 0)
+        {
+            @foreach (var item in Model.Comments)
+            {
+                <div class="comment">
+                    <p class="comment_author">@item.User.Name</p>
+                    <p class="comment_date">@item.PublicationDate</p>
+                    <p class="comment_content">@item.Content</p>
+                </div>
+                <hr />
+            }
+        } else
+        {
+            <h6 class="text-center">Коментарі відсутні</h6>
+        }
+    </div>
+
+</div>
